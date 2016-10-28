@@ -1,0 +1,45 @@
+<h1>Hello World!</h1>
+
+<div ng-app="app">
+  <div ng-controller="starsController" ng-init="setup()">
+  <input type="text" ng-model="nameFilter">
+  <input type="text" ng-model="limitToThis">
+  <table style="width:100%">
+    <tr>
+      <th ng-click="toggleOrder('character')">Character</th>
+      <th ng-click="toggleOrder('planet')">Planet</th>
+      <th ng-click="toggleOrder('quote')">Quote</th>
+    </tr>
+    <tr>
+      <th class="sort">{{ character }}</th>
+      <th class="sort">{{ planet }}</th>
+      <th class="sort">{{ quote }}</th>
+    </tr>
+    
+    <tr ng-repeat="star in stars | filter: {character: nameFilter } | orderBy: orderAttribute:descending | limitTo:limitToThis">
+      <th>{{star.character}}</th>
+      <th>{{star.planet}}</th> 
+      <th>{{star.quote}}
+      <div class="form">
+        <input type="text" ng-model="editCharacter" placeholder="{{star.character}}">
+        <input type="text" ng-model="editPlanet" placeholder="{{star.planet}}">
+        <input type="text" ng-model="editQuote" placeholder="{{star.quote}}">
+        <button ng-click="editPerson(star.id, editCharacter, editPlanet, editQuote)">Edit Character</button>
+      </th> 
+    </tr>
+    </div>
+  </table>
+
+  <div class="form">
+    <ul>
+      <li ng-repeat="error in errors">{{ error }}</li>
+    </ul>
+    <input type="text" ng-model="addCharacter" placeholder="Character">
+    <input type="text" ng-model="addPlanet" placeholder="Planet">
+    <input type="text" ng-model="addQuote" placeholder="Quote">
+    <button ng-click="addPerson(addCharacter, addPlanet, addQuote)">Add Character</button>
+  </div>
+    
+  </div>
+  
+</div>

@@ -1,0 +1,1 @@
+json.array! @stars, partial: 'star_war', as: :star

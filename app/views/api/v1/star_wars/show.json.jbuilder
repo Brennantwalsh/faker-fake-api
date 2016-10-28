@@ -1,0 +1,1 @@
+json.partial! @star, partial: 'star_war', as: :star
